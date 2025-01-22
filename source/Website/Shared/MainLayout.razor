@@ -1,0 +1,63 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudGrid>
+        <MudItem xs="12" md="12" lg="12" Class="mb-10">
+            <MudAppBar Color="Color.Dark" Elevation="0">
+                <MudItem xs="12" md="3" lg="3" Class="d-flex justify-center">
+                    <MudIcon Icon="@Icons.Custom.Brands.Linux" />
+                </MudItem>
+                <MudItem xs="12" md="6" lg="6" Class="d-flex justify-center gap-4">
+                    <MudButton Variant="Variant.Filled" Color="Color.Info" Href="/">Forside</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Info" Href="/services">Service / Reperation</MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Info" Href="/contact">Kontakt</MudButton>
+                </MudItem>
+                <MudItem xs="12" md="3" lg="3" Class="d-flex justify-end">
+                    <MudItem Class="pl-6">
+                        <MudItem Class="d-flex justify-center">
+                            <MudIcon Icon="@Icons.Outlined.Phone" />
+                        </MudItem>
+                        <MudItem Class="d-flex justify-center">
+                            <MudText>+45 12 34 56 78</MudText>
+                        </MudItem>
+                    </MudItem>
+                    <MudItem Class="pl-6">
+                        <MudItem Class="d-flex justify-center">
+                            <AuthorizeView>
+                                <Authorized>
+                                    <MudMenu Color="Color.Info" StartIcon="@Icons.Material.Outlined.Person" Label="Konto" ActivationEvent="@MouseEvent.MouseOver" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+                                        <ActivatorContent>
+                                            <MudChip Icon="@Icons.Material.Filled.Person" Color="Color.Info">Konto</MudChip>
+                                        </ActivatorContent>
+                                        <ChildContent>
+                                            <MudMenuItem Href="/profile">Profil</MudMenuItem>
+                                            @if (userRole == "Admin" || userRole == "Bogholder" || userRole == "Mekaniker")
+                                            {
+                                                <MudMenuItem Href="/dashboard">Dashboard</MudMenuItem>
+                                            }
+                                            <MudMenuItem OnClick="async () => await Logout()">Log ud</MudMenuItem>
+                                        </ChildContent>
+                                    </MudMenu>
+                                </Authorized>
+                                <NotAuthorized>
+                                    <MudFab Href="/login" Color="Color.Info" Icon="@Icons.Material.Outlined.Login" Label="Login" />
+                                </NotAuthorized>
+                            </AuthorizeView>
+                        </MudItem>
+                    </MudItem>
+                </MudItem>
+                
+            </MudAppBar>
+        </MudItem>
+    </MudGrid>
+
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-4 pt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
