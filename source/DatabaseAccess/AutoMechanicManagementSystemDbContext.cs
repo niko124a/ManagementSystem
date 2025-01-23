@@ -28,8 +28,8 @@ namespace DatabaseAccess
         // TODO: Remove this method later.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer("Server=db,1433;Database=AutoMechanicManagementSystemDb;User Id=sa;Password=Test1234!;TrustServerCertificate=true;"); // connectionstring for db when running in docker
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=AutoMechanicManagementSystemDb;Trusted_Connection=True;"); // connectionstring for db when running locally
+            // optionsBuilder.UseSqlServer("db-connectionstring"); // connectionstring for db when running in docker
+            optionsBuilder.UseSqlServer("<db-connectionstring>"); // connectionstring for db when running locally
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

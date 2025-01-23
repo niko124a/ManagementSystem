@@ -17,10 +17,6 @@ namespace WebAPI
 
             builder.Configuration.AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: true);
 
-            // var configuration = new ConfigurationBuilder()
-            //     .AddJsonFile(path:"appsettings.json", optional:false, reloadOnChange:true)
-            //     .Build();
-
             // Add services to the container.
 
             builder.Services.AddControllers(options =>
